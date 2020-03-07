@@ -2,8 +2,6 @@ import pandas as pd
 import os
 from datetime import date
 import pyodbc
-from collections import Counter
-
 
 sql_conn = pyodbc.connect(
     "Driver={ODBC Driver 17 for SQL Server}; \
