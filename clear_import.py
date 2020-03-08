@@ -26,6 +26,7 @@ campaign_id_map = {
     "CAMP3": 5002,
     "CAMP4": 5003,
     "CAMP5": 5004,
+}
 
 
 data = date.today()
@@ -40,14 +41,9 @@ all_files = os.listdir(dir_mailing_import)
 # print(all_files)
 
 ################# CRIAR LISTA DE ARQUIVOS QUE FORAM IMPORTADOS HOJE #################
-arquivos_not_today = []
+
 # cria lista de arquivos que não são de hoje
-for f in all_files:
-    data_file = int(f[-19:-11])
-    # print('Arquivo: ' + f + '\t\t\tData:\t' + str(data_file))
-    # print(data_file)
-    if (data_file != today):
-        arquivos_not_today.append(f)
+arquivos_not_today = [f for f in all_files if int(f[-19:-11]) != today]
 
 # arquivos de hoje = todos - não_hoje
 files_today = Diff_List(all_files, arquivos_not_today)
@@ -56,6 +52,7 @@ files_today = Diff_List(all_files, arquivos_not_today)
 
 # percorre os arquivos de hoje para preencher os nomes das campanhas
 campaign_name_registers = {}
+
 for f1 in files_today:
     # print(f1)
     campaign_name = f1[:-20]  # nome da campanha
